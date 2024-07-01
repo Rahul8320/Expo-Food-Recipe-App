@@ -1,16 +1,33 @@
 import { Recipe } from "@/types/Recipe";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { ThemedView } from "../ThemedView";
 import { ThemedText } from "../ThemedText";
 import { Colors } from "@/constants/Colors";
+import { FontAwesome } from "@expo/vector-icons";
 
-const RecipeCard = ({ name, thumbnail }: Recipe) => {
+const RecipeCard = ({ name, thumbnail, rating }: Recipe) => {
   return (
     <ThemedView style={styles.container}>
       <Image source={{ uri: thumbnail }} style={styles.image} />
       <ThemedText type="subtitle" style={styles.titleText}>
         {name}
       </ThemedText>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <ThemedText>35 mins</ThemedText>
+        <ThemedText style={{ marginHorizontal: 8 }}>|</ThemedText>
+        <ThemedText>{rating}</ThemedText>
+        <FontAwesome
+          name="star"
+          size={16}
+          color={Colors.primary}
+          style={{ marginLeft: 5 }}
+        />
+      </View>
     </ThemedView>
   );
 };
