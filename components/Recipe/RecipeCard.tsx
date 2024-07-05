@@ -1,13 +1,16 @@
 import { Recipe } from "@/types/Recipe";
-import { Image, StyleSheet, View } from "react-native";
-import { ThemedView } from "../ThemedView";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "../ThemedText";
 import { Colors } from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
+import { router } from "expo-router";
 
-const RecipeCard = ({ name, thumbnail, rating }: Recipe) => {
+const RecipeCard = ({ name, thumbnail, rating, id }: Recipe) => {
   return (
-    <ThemedView style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => router.navigate(`recipeDetails/${id}`)}
+    >
       <Image source={{ uri: thumbnail }} style={styles.image} />
       <ThemedText type="subtitle" style={styles.titleText}>
         {name}
@@ -28,7 +31,7 @@ const RecipeCard = ({ name, thumbnail, rating }: Recipe) => {
           style={{ marginLeft: 5 }}
         />
       </View>
-    </ThemedView>
+    </TouchableOpacity>
   );
 };
 
